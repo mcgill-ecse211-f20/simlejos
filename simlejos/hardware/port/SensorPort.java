@@ -1,7 +1,6 @@
 package simlejos.hardware.port;
 
 import simlejos.hardware.ev3.LocalEV3;
-import simlejos.hardware.port.Port;
 
 /**
  * Basic interface for EV3 sensor ports.
