@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="sim-lejos/simlejos.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/sim-lejos/jar_descr.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos.hardware.ev3"/>
+        <file path="/sim-lejos/README.md"/>
+        <file path="/sim-lejos/.project"/>
+        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos.hardware.sensor"/>
+        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos.hardware.port"/>
+        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos"/>
+        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos.hardware"/>
+        <file path="/sim-lejos/.classpath"/>
+        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos.hardware.motor"/>
+        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos.robotics"/>
+    </selectedElements>
+</jardesc>
