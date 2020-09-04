@@ -91,7 +91,7 @@ public class RegulatedMotor {
     }
     //otherwise initialize motor
     try {
-      this.robot = robot;
+      setRobot(robot);
       direction = 1;
       //Get the motor
       target = temp;
@@ -234,7 +234,7 @@ public class RegulatedMotor {
    */
   public void rotate(int angle, boolean immediateReturn) {
     double offsetPosition = (double) angle * Math.PI / 180;
-    double endPosition = getSensorValue() + (double) angle * Math.PI / 180;
+    double endPosition = getSensorValue() + offsetPosition;
     motorLock.lock();
     try {
       // Velocity must be positive in position control mode
@@ -322,6 +322,24 @@ public class RegulatedMotor {
     } finally {
       sensorLock.unlock();
     }
+  }
+
+  /**
+   * Returns the robot.
+   * 
+   * @return the robot
+   */
+  public Robot getRobot() {
+    return robot;
+  }
+
+  /**
+   * Set the robot.
+   * 
+   * @param robot the robot to set
+   */
+  public void setRobot(Robot robot) {
+    this.robot = robot;
   }
 
   /**
