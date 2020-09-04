@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 /**
- * Wrapper class to simulate a leJOS SampleProvider.
+ * Wrapper class to simulate a base sensor.
  * 
  * @see <a href="http://www.lejos.org/ev3/docs/lejos/hardware/port/package-summary.html">Lejos API</a>
  */
