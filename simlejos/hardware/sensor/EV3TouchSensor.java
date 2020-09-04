@@ -124,9 +124,14 @@ public class EV3TouchSensor extends BaseSensor implements SensorModes {
       lock.lock();
       try {
         sample[offset] = (float) (sensor.getValue() / SCALING_FACTOR);
-        //Make sure the result is between 0 and 1.  Simulated values can be outside that range in extreme cases
-        if(sample[offset]<0)sample[offset]=0;
-        if(sample[offset]>1)sample[offset]=1;
+        // Make sure the result is between 0 and 1.
+        // Simulated values can be outside that range in extreme cases
+        if (sample[offset] < 0) {
+          sample[offset] = 0;
+        }
+        if (sample[offset] > 1) {
+          sample[offset] = 1;
+        }
       } catch (Exception e) {
         System.err.println("EV3TouchSensor fetchSample exception: " + e.getMessage());
       } finally {
