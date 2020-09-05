@@ -50,14 +50,31 @@ public class EV3TouchSensor extends BaseSensor implements SensorModes {
     }
   }
   
+  /**
+   * Constructs an EV3TouchSensor object.
+   * 
+   * @param port the port on which the sensor is attached.
+   */
   public EV3TouchSensor(Port port) {
     this(port.getRobot(), port.getName());
   }
 
+  /**
+   * Returns digital touch mode.
+   * 
+   * @see TouchMode
+   * @return digital touch mode
+   */
   public SensorMode getTouchMode() {
     return getMode(TOUCH_MODE);
   }
-
+  
+  /**
+  * Returns analog touch mode.
+  * 
+  * @see AnalogMode
+  * @return analog touch mode
+  */
   public SensorMode getAnalogMode() {
     return getMode(ANALOG_MODE);
   }
@@ -67,7 +84,8 @@ public class EV3TouchSensor extends BaseSensor implements SensorModes {
   }
 
   /**
-   * Digital touch mode.
+   * Digital touch mode for the touch sensor. In this mode, the value of the sample is 0 if the
+   * sensor is not pressed and 1 if it is.
    */
   private class TouchMode implements SensorMode {
     
@@ -106,7 +124,8 @@ public class EV3TouchSensor extends BaseSensor implements SensorModes {
   }
   
   /**
-   * Analog touch mode.
+   * Analog touch mode for the touch sensor. In this mode, the value of the sample ranges from 0
+   * to 1 depending on the extent to which the sensor is pressed.
    */
   private class AnalogMode implements SensorMode {
     

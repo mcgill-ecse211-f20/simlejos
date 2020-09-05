@@ -50,6 +50,11 @@ public class EV3UltrasonicSensor extends BaseSensor implements SensorModes {
     }
   }
 
+  /**
+   * Constructs an EV3UltrasonicSensor object.
+   * 
+   * @param port the port on which the sensor is attached.
+   */
   public EV3UltrasonicSensor(Port port) {
     this(port.getRobot(), port.getName());
   }

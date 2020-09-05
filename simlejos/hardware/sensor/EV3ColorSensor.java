@@ -62,6 +62,11 @@ public class EV3ColorSensor extends BaseSensor implements SensorModes {
     setFloodlight(true);
   }
   
+  /**
+   * Constructs an EV3ColorSensor object.
+   * 
+   * @param port the port on which the sensor is attached.
+   */
   public EV3ColorSensor(Port port) {
     this(port.getRobot(), port.getName());
   }
