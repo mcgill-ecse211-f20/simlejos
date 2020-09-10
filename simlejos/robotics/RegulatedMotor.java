@@ -171,7 +171,7 @@ public class RegulatedMotor {
   public void setSpeed(int velocity) {
     motorLock.lock();
     try {
-      // need to convert to radian for webots
+    	 // need to convert to radian for webots
       speed = Math.abs(velocity) * Math.PI / 180;
       // If the direction is negative, we need to be in velocity mode
       if (direction == -1) {
@@ -184,8 +184,29 @@ public class RegulatedMotor {
       motorLock.unlock();
     }
   }
+  
+  /**
+   * Returns the current motor speed in degrees per second.
+   */
+  public int getSpeed() {
+    motorLock.lock();
+    // need to convert to degrees
+    double velocity=speed * 180 / Math.PI;
+    motorLock.unlock();
+    return (int)Math.round(velocity);
+  }
 
-    
+  /**
+   * Returns the maximum speed that can be maintained.
+   */
+  public float getMaxSpeed() {
+    motorLock.lock();
+    // need to convert to degrees
+    double velocity=Math.abs(target.getMaxVelocity()) * 180 / Math.PI;
+    motorLock.unlock();
+    return (float)velocity;
+  }
+
 
   // TODO: flt should let the motor coast to a stop
   /**
