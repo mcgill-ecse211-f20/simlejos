@@ -171,7 +171,7 @@ public class RegulatedMotor {
   public void setSpeed(int velocity) {
     motorLock.lock();
     try {
-    	 // need to convert to radian for webots
+      // need to convert to radian for webots
       speed = Math.abs(velocity) * Math.PI / 180;
       // If the direction is negative, we need to be in velocity mode
       if (direction == -1) {
@@ -191,9 +191,9 @@ public class RegulatedMotor {
   public int getSpeed() {
     motorLock.lock();
     // need to convert to degrees
-    double velocity=speed * 180 / Math.PI;
+    double velocity = speed * 180 / Math.PI;
     motorLock.unlock();
-    return (int)Math.round(velocity);
+    return (int) Math.round(velocity);
   }
 
   /**
@@ -202,9 +202,9 @@ public class RegulatedMotor {
   public float getMaxSpeed() {
     motorLock.lock();
     // need to convert to degrees
-    double velocity=Math.abs(target.getMaxVelocity()) * 180 / Math.PI;
+    double velocity = Math.abs(target.getMaxVelocity()) * 180 / Math.PI;
     motorLock.unlock();
-    return (float)velocity;
+    return (float) velocity;
   }
 
 
