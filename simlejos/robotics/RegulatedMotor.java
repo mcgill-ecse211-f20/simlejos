@@ -98,6 +98,8 @@ public class RegulatedMotor {
       //Get and enable the positionSensor
       sensor = robot.getPositionSensor(name + "-sensor");
       sensor.enable((int) robot.getBasicTimeStep());
+      //Enable feedback sensors
+      target.enableTorqueFeedback((int) robot.getBasicTimeStep());
     } catch (Exception e) {
       System.err.println("RegulatedMotor initialization exception: " + e.getMessage());
     }
@@ -207,6 +209,16 @@ public class RegulatedMotor {
     return (float) velocity;
   }
 
+  /**
+   * Returns the current motor torque in Newton per Meters.
+   */
+  public double getTorque() {
+    motorLock.lock();
+    double torque = target.getTorqueFeedback();
+    motorLock.unlock();
+    return torque;
+  }
+  
 
   // TODO: flt should let the motor coast to a stop
   /**
