@@ -7,6 +7,7 @@ import simlejos.hardware.ev3.LocalEV3;
  * The execution controller controls the execution of physics steps.
  * 
  * @author Olivier St-Martin Cormier
+ * @author Younes Boubekeur
  */
 public class ExecutionController {
   public static final ExecutionController controller = new ExecutionController();
@@ -18,6 +19,9 @@ public class ExecutionController {
   private static CyclicBarrier barrier = new CyclicBarrier(1);
   
   private static int numberOfParties = 1;
+  
+  /** The period between physics steps performed in the background, in milliseconds. */
+  private static long physicsStepsPeriod = 500;
   
   private ExecutionController(){
   }
@@ -90,4 +94,44 @@ public class ExecutionController {
     numberOfParties = n;
     barrier = new CyclicBarrier(n);
   }
+  
+  /**
+   * Returns the physics steps period in milliseconds.
+   * 
+   * @return the physics steps period in milliseconds
+   */
+  public static long getPhysicsStepsPeriod() {
+    return physicsStepsPeriod;
+  }
+
+  /**
+   * Sets the physics steps period.
+   * 
+   * @param physicsStepsPeriod in milliseconds
+   */
+  public static void setPhysicsStepsPeriod(long physicsStepsPeriod) {
+    ExecutionController.physicsStepsPeriod = physicsStepsPeriod;
+  }
+
+  /**
+   * Performs physics steps in the background.
+   */
+  public static void performPhysicsStepsInBackground() {
+    new Thread(() -> {
+      while (performPhysicsStep()) {
+        sleepFor(physicsStepsPeriod);
+      }
+    }).start();
+  }
+  
+  /**
+   * Performs physics steps in the background with a custom physics steps period.
+   * 
+   * @param physicsStepsPeriod in milliseconds
+   */
+  public static void performPhysicsStepsInBackground(long physicsStepsPeriod) {
+    setPhysicsStepsPeriod(physicsStepsPeriod);
+    performPhysicsStepsInBackground();
+  }
+
 }
