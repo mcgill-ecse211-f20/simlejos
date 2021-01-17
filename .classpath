@@ -6,6 +6,5 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/usr/local/webots/lib/controller/java/Controller.jar" sourcepath="/usr/local/webots/resources/languages/java"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

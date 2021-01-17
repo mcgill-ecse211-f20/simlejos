@@ -1,9 +1,9 @@
 package simlejos.hardware.sensor;
 
-import com.cyberbotics.webots.controller.DistanceSensor;
-import com.cyberbotics.webots.controller.Robot;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import simlejos.FakeClasses.DistanceSensor;
+import simlejos.FakeClasses.Robot;
 import simlejos.hardware.port.Port;
 
 /**
@@ -19,7 +19,7 @@ public class EV3UltrasonicSensor extends BaseSensor implements SensorModes {
   /**
    * The Webots sensor to interface with.
    */
-  final DistanceSensor sensor;
+  final DistanceSensor sensor = null;
  
   /**
    * Lock for the sensor.
@@ -36,18 +36,7 @@ public class EV3UltrasonicSensor extends BaseSensor implements SensorModes {
    * @param name the sensor name
    */
   public EV3UltrasonicSensor(Robot robot, String name) {
-    // Get target sensor
-    sensor = robot.getDistanceSensor(name);
     setModes(new SensorMode[] {new DistanceMode()});
-    lock.lock();
-    try {
-      // Set the timestep to that of the robot
-      sensor.enable((int) robot.getBasicTimeStep());
-    } catch (Exception e) {
-      System.err.println("EV3UltrasonicSensor enable exception: " + e.getMessage());
-    } finally {
-      lock.unlock();
-    }
   }
 
   /**
@@ -56,7 +45,7 @@ public class EV3UltrasonicSensor extends BaseSensor implements SensorModes {
    * @param port the port on which the sensor is attached.
    */
   public EV3UltrasonicSensor(Port port) {
-    this(port.getRobot(), port.getName());
+    setModes(new SensorMode[] {new DistanceMode()});
   }
 
   public SensorMode getDistanceMode() {
@@ -81,14 +70,6 @@ public class EV3UltrasonicSensor extends BaseSensor implements SensorModes {
 
     @Override
     public void fetchSample(float[] sample, int offset) {
-      lock.lock();
-      try {
-        sample[offset] = (float) (sensor.getValue() / SCALING_FACTOR);
-      } catch (Exception e) {
-        System.err.println("EV3UltrasonicSensor fetchSample exception: " + e.getMessage());
-      } finally {
-        lock.unlock();
-      }
     }
         
     @Override

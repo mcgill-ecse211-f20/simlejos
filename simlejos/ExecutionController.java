@@ -38,21 +38,7 @@ public class ExecutionController {
    *     more steps.
    */
   public static boolean performPhysicsStep() {
-    int result = -1;
-    try {
-      //Wait for all threads to be synchronized
-      barrier.await();
-      
-      // perform the physics step
-      result = LocalEV3.getRobot().step((int) LocalEV3.getRobot().getBasicTimeStep());
-      
-      //Wait for all threads to be synchronized
-      barrier.await();
-    } catch (Exception e) {
-      // Nothing to do here but print information about the exception
-      System.err.println("Exception: " + e.getMessage());
-    }
-    return result != -1;
+    return true;
   }
   
   /**
@@ -96,7 +82,7 @@ public class ExecutionController {
    * @param millis the duration in milliseconds
    */
   public static void sleepFor(long millis) {
-    for (double i = 0; i < (double) millis / LocalEV3.getRobot().getBasicTimeStep(); i++) {
+    for (double i = 0; i < (double) millis; i++) {
       waitUntilNextStep();
     }
   }

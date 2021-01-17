@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <jardesc>
-    <jar path="sim-lejos/simlejos.jar"/>
-    <options buildIfNeeded="true" compress="true" descriptionLocation="/sim-lejos/make_jar.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <jar path="fake-sim-lejos/fake-simlejos.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/fake-sim-lejos/make_jar.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
     <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
@@ -11,15 +11,21 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
-        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos.hardware.ev3"/>
-        <file path="/sim-lejos/README.md"/>
-        <file path="/sim-lejos/.project"/>
-        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos.hardware.sensor"/>
-        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos.hardware.port"/>
-        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos"/>
-        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos.hardware"/>
-        <file path="/sim-lejos/.classpath"/>
-        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos.hardware.motor"/>
-        <javaElement handleIdentifier="=sim-lejos/&lt;simlejos.robotics"/>
+        <javaElement handleIdentifier="=fake-sim-lejos/&lt;simlejos.hardware.motor"/>
+        <javaElement handleIdentifier="=fake-sim-lejos/&lt;simlejos"/>
+        <javaElement handleIdentifier="=fake-sim-lejos/&lt;simlejos.hardware.ev3"/>
+        <file path="/fake-sim-lejos/Makefile"/>
+        <javaElement handleIdentifier="=fake-sim-lejos/&lt;simlejos.robotics"/>
+        <javaElement handleIdentifier="=fake-sim-lejos/&lt;simlejos.hardware.port"/>
+        <javaElement handleIdentifier="=fake-sim-lejos/&lt;simlejos.hardware"/>
+        <file path="/fake-sim-lejos/.gitignore"/>
+        <file path="/fake-sim-lejos/.project"/>
+        <file path="/fake-sim-lejos/make_jar.jardesc"/>
+        <file path="/fake-sim-lejos/README.md"/>
+        <folder path="/fake-sim-lejos/.settings"/>
+        <file path="/fake-sim-lejos/Manifest.MF"/>
+        <javaElement handleIdentifier="=fake-sim-lejos/&lt;simlejos.hardware.sensor"/>
+        <file path="/fake-sim-lejos/.classpath"/>
+        <file path="/fake-sim-lejos/make_with_java11.0.1.sh"/>
     </selectedElements>
 </jardesc>

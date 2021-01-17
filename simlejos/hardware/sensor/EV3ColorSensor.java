@@ -1,10 +1,10 @@
 package simlejos.hardware.sensor;
 
-import com.cyberbotics.webots.controller.Camera;
-import com.cyberbotics.webots.controller.LED;
-import com.cyberbotics.webots.controller.Robot;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import simlejos.FakeClasses.Camera;
+import simlejos.FakeClasses.LED;
+import simlejos.FakeClasses.Robot;
 import simlejos.hardware.port.Port;
 
 /**
@@ -23,12 +23,12 @@ public class EV3ColorSensor extends BaseSensor implements SensorModes {
   /**
    * The Webots sensor to interface with.
    */
-  private final Camera sensor;
+  private final Camera sensor = null;
   
   /**
    * The light on the Webots sensor to interface with.
    */
-  private final LED light;
+  private final LED light = null;
   
   /**
    * Lock for the sensor.
@@ -44,22 +44,7 @@ public class EV3ColorSensor extends BaseSensor implements SensorModes {
    * @param name the sensor name
    */
   public EV3ColorSensor(Robot robot, String name) {
-    //Get target sensor
-    sensor = robot.getCamera(name);
-    light = robot.getLED(name + "-light");
     setModes(new SensorMode[] {new RedMode(), new RGBMode(), new AmbientMode()});
-    //Enable sensor
-    lock.lock();
-    try {
-      //Set the timestep to that of the robot
-      sensor.enable((int) robot.getBasicTimeStep());
-    } catch (Exception e) {
-      System.err.println("EV3ColorSensor enable exception: " + e.getMessage());
-    } finally {
-      lock.unlock();
-    }
-    //Turn the light on
-    setFloodlight(true);
   }
   
   /**
@@ -68,7 +53,7 @@ public class EV3ColorSensor extends BaseSensor implements SensorModes {
    * @param port the port on which the sensor is attached.
    */
   public EV3ColorSensor(Port port) {
-    this(port.getRobot(), port.getName());
+    setModes(new SensorMode[] {new RedMode(), new RGBMode(), new AmbientMode()});
   }
   
   public int getModeCount() {
@@ -97,30 +82,13 @@ public class EV3ColorSensor extends BaseSensor implements SensorModes {
    * Turns the default LED light on or off.
    */
   public void setFloodlight(boolean floodlight) {
-    lock.lock();
-    try {
-      light.set(floodlight ? 1 : 0);
-    } catch (Exception e) {
-      System.err.println("ColorSensor setFloodlight exception: " + e.getMessage());
-    } finally {
-      lock.unlock();
-    }
   }
   
   /**
    * Checks if the floodlight is currently on.
    */
   public boolean isFloodlightOn() {
-    int state = 0;
-    lock.lock();
-    try {
-      state = light.get();
-    } catch (Exception e) {
-      System.err.println("ColorSensor isFloodlightOn exception: " + e.getMessage());
-    } finally {
-      lock.unlock();
-    }
-    return state == 1;
+    return false;
   }
   
   private class RGBMode implements SensorMode {
@@ -135,16 +103,6 @@ public class EV3ColorSensor extends BaseSensor implements SensorModes {
 
     @Override
     public void fetchSample(float[] sample, int offset) {
-      lock.lock();
-      try {
-        sample[offset] = Camera.imageGetRed(sensor.getImage(), sensor.getWidth(), 0, 0);
-        sample[offset + 1] = Camera.imageGetGreen(sensor.getImage(), sensor.getWidth(), 0, 0);
-        sample[offset + 2] = Camera.imageGetBlue(sensor.getImage(), sensor.getWidth(), 0, 0);
-      } catch (Exception e) {
-        System.err.println("EV3ColorSensor fetchSample exception: " + e.getMessage());
-      } finally {
-        lock.unlock();
-      }
     }
 
     @Override
@@ -166,17 +124,6 @@ public class EV3ColorSensor extends BaseSensor implements SensorModes {
 
     @Override
     public void fetchSample(float[] sample, int offset) {
-      lock.lock();
-      try {
-        float r = Camera.imageGetRed(sensor.getImage(), sensor.getWidth(), 0, 0);
-        float g = Camera.imageGetGreen(sensor.getImage(), sensor.getWidth(), 0, 0);
-        float b = Camera.imageGetBlue(sensor.getImage(), sensor.getWidth(), 0, 0);
-        sample[offset] = (r + g + b) / 3;
-      } catch (Exception e) {
-        System.err.println("EV3ColorSensor fetchSample exception: " + e.getMessage());
-      } finally {
-        lock.unlock();
-      }
     }
 
     @Override
@@ -198,14 +145,6 @@ public class EV3ColorSensor extends BaseSensor implements SensorModes {
 
     @Override
     public void fetchSample(float[] sample, int offset) {
-      lock.lock();
-      try {
-        sample[offset] = Camera.imageGetRed(sensor.getImage(), sensor.getWidth(), 0, 0);
-      } catch (Exception e) {
-        System.err.println("EV3ColorSensor fetchSample exception: " + e.getMessage());
-      } finally {
-        lock.unlock();
-      }
     }
 
     @Override

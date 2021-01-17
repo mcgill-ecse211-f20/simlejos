@@ -1,6 +1,6 @@
 package simlejos.hardware.motor;
 
-import com.cyberbotics.webots.controller.Robot;
+import simlejos.FakeClasses.Robot;
 import simlejos.hardware.port.Port;
 import simlejos.robotics.RegulatedMotor;
 

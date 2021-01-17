@@ -1,6 +1,6 @@
 package simlejos.hardware.port;
 
-import com.cyberbotics.webots.controller.Robot;
+import simlejos.FakeClasses.Robot;
 
 /**
  * Interface that provides a binding between a physical port and the different

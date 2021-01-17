@@ -1,6 +1,6 @@
 package simlejos.hardware.ev3;
 
-import com.cyberbotics.webots.controller.Robot;
+import simlejos.FakeClasses.Robot;
 import simlejos.hardware.Audio;
 import simlejos.hardware.port.Port;
 
@@ -11,19 +11,13 @@ import simlejos.hardware.port.Port;
 public class LocalEV3 implements EV3 {
   public static final LocalEV3 ev3 = new LocalEV3();
   //The Webots Robot
-  private static Robot robot;
+  private static Robot robot = null;
   //The speaker on the robot
-  public static Audio audio;
+  public static Audio audio = null;
     
 
     
   private LocalEV3() {
-    //Initialize Robot
-    robot = new Robot();
-    //run one physics step to make sure all devices are initialized before reading/writing to them
-    robot.step((int) robot.getBasicTimeStep());
-    //Initialize audio
-    audio = new Audio(robot);
   }
     
   public static EV3 get() {
