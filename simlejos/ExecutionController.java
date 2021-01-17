@@ -56,6 +56,22 @@ public class ExecutionController {
   }
   
   /**
+   * Calls {@code performPhysicsStep()} numSteps times.
+   * 
+   * @param numSteps the number of physics steps to take
+   * @return true if the last physics step is successful and the controller will continue to perform
+   *     more steps.
+   */
+  public static boolean performPhysicsSteps(int numSteps) {
+    for (int i = 0; i < numSteps; i++) {
+      if (!performPhysicsStep()) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  /**
    * "Sleep" until the next physics step is performed.
    */
   public static void waitUntilNextStep() {
